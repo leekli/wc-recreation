@@ -8,7 +8,6 @@
 """
 
 from os import path
-import re
 from args_setup import args_setup
 
 
@@ -23,7 +22,6 @@ def main(args):
 
     Raises:
         None.
-
     """
 
     # If -c flag given
@@ -35,6 +33,8 @@ def main(args):
     # If -w flag given
     if args.w:
         print(count_words(args.w))
+    if args.m:
+        print(count_characters(args.m))
 
 
 def count_bytes(file_name):
@@ -49,7 +49,6 @@ def count_bytes(file_name):
     Raises:
         FileNotFoundError: If file name is invalid.
         OSError: If any other error occurs.
-
     """
     try:
         file_size = path.getsize(file_name)
@@ -72,7 +71,6 @@ def count_lines(file_name):
     Raises:
         FileNotFoundError: If file name is invalid.
         OSError: If any other error occurs.
-
     """
     total_lines = 0
 
@@ -100,7 +98,6 @@ def count_words(file_name):
     Raises:
         FileNotFoundError: If file name is invalid.
         OSError: If any other error occurs.
-
     """
     total_words = 0
 
@@ -111,6 +108,33 @@ def count_words(file_name):
                 total_words += len(words)
 
         return f"   {total_words} {path.basename(file_name)}"
+    except FileNotFoundError:
+        return f"File: {path.basename(file_name)} not found."
+    except OSError:
+        return "OS error occurred."
+
+
+def count_characters(file_name):
+    """Function counts the total number of characters in a given file.
+
+    Parameters:
+        file_name (str): Path to a file.
+
+    Returns:
+        str: The total number of characters in a file and file name.
+
+    Raises:
+        FileNotFoundError: If file name is invalid.
+        OSError: If any other error occurs.
+    """
+    total_characters = 0
+
+    try:
+        with open(file_name, "r") as file:
+            for line in file:
+                total_characters += len(line.encode("utf-8"))
+
+        return f"   {total_characters} {path.basename(file_name)}"
     except FileNotFoundError:
         return f"File: {path.basename(file_name)} not found."
     except OSError:

@@ -7,9 +7,10 @@
     ccwc.py
 """
 
-from os import path
+from os import path, remove
 from args_setup import args_setup
 import sys
+from random import randint
 
 
 def main(args):
@@ -49,14 +50,29 @@ def main(args):
             print(f"    {count_characters(args.m.name)} {path.basename(args.m.name)}")
         else:
             print(f"    {count_characters(args.m)}")
-    # If no flag given, and only a file name
-    elif args.input_file:
-        file = args.input_file
-        print(
-            f"    {count_lines(file)}   {count_words(file)}   {count_bytes(file)} {path.basename(file)}"
-        )
     else:
-        print("No input detected.")
+        # If no flag arguments are given, but a file name is
+        if args.input_file is not None:
+            file = args.input_file
+            print(
+                f"    {count_lines(file)}   {count_words(file)}   {count_bytes(file)} {path.basename(file)}"
+            )
+        # If no flag arguments given, but standard input (stdin) is and no file name
+        else:
+            stdin_content = sys.stdin.read()
+            file_name = f"{randint(2452, 387628)}.txt"
+
+            # Create temporary file to store stdin data
+            with open(file_name, "w") as file:
+                file.write(stdin_content)
+
+            print(
+                f"    {count_lines(file_name)}   {count_words(file_name)}   {count_bytes(file_name)}"
+            )
+
+            # Delete temporary file if print successful
+            if path.exists(file_name):
+                remove(file_name)
 
 
 def count_bytes(file_name):

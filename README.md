@@ -101,13 +101,16 @@ Part of this Coding challenge: https://codingchallenges.fyi/challenges/challenge
 
 <br></br>
 
-> [!NOTE]
-> The following command below can only currently be used either by giving a file name.
-
-- **[file_name]:** No flags given, only a file name. Displays the number of lines, bytes and characters in the input file given.
+- **[file_name | stdin]:** No flags given, only a file name. Displays the number of lines, bytes and characters in the input file given, or piping/using standard input.
 
   - With a file name:
 
   ```terminal
   $ ./ccwc.py art_of_war.txt
+  ```
+
+  - Using standard input and no flags or file name given:
+
+  ```terminal
+  $ cat art_of_war.txt | ./ccwc.py
   ```

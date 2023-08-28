@@ -14,9 +14,9 @@ Part of this Coding challenge: https://codingchallenges.fyi/challenges/challenge
 
 1. Clone the repo:
 
-```terminal
-$ git clone https://github.com/leekli/wc-recreation.git
-```
+   ```terminal
+   $ git clone https://github.com/leekli/wc-recreation.git
+   ```
 
 2. Ensure at least Python 3.10 is installed.
 
@@ -102,7 +102,7 @@ $ git clone https://github.com/leekli/wc-recreation.git
 <br></br>
 
 > [!NOTE]
-> All following command below can only currently be used either by giving a file name.
+> The following command below can only currently be used either by giving a file name.
 
 - **[file_name]:** No flags given, only a file name. Displays the number of lines, bytes and characters in the input file given.
 

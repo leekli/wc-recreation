@@ -4,7 +4,7 @@
     - ccwc - Coding Challenge Word Count
     - Recreation of the wc unix command line tool (https://codingchallenges.fyi/challenges/challenge-wc)
     
-    main.py
+    ccwc.py
 """
 
 from os import path

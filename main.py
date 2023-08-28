@@ -26,15 +26,22 @@ def main(args):
 
     # If -c flag given
     if args.c:
-        print(count_bytes(args.c))
+        print(f"    {count_bytes(args.c)} {path.basename(args.c)}")
     # If -l flag given
-    if args.l:
-        print(count_lines(args.l))
+    elif args.l:
+        print(f"    {count_lines(args.l)} {path.basename(args.l)}")
     # If -w flag given
-    if args.w:
-        print(count_words(args.w))
-    if args.m:
-        print(count_characters(args.m))
+    elif args.w:
+        print(f"    {count_words(args.w)} {path.basename(args.w)}")
+    # If -m flag given
+    elif args.m:
+        print(f"    {count_characters(args.m)} {path.basename(args.m)}")
+    # If not flag given, and only a file name
+    else:
+        file = args.input_file
+        print(
+            f"    {count_lines(file)}   {count_words(file)}   {count_bytes(file)} {path.basename(file)}"
+        )
 
 
 def count_bytes(file_name):
@@ -52,7 +59,7 @@ def count_bytes(file_name):
     """
     try:
         file_size = path.getsize(file_name)
-        return f"   {file_size} {path.basename(file_name)}"
+        return file_size
     except FileNotFoundError:
         return f"File: {path.basename(file_name)} not found."
     except OSError:
@@ -79,7 +86,7 @@ def count_lines(file_name):
             for line in file:
                 total_lines += 1
 
-        return f"   {total_lines} {path.basename(file_name)}"
+        return total_lines
     except FileNotFoundError:
         return f"File: {path.basename(file_name)} not found."
     except OSError:
@@ -107,7 +114,7 @@ def count_words(file_name):
                 words = line.split()
                 total_words += len(words)
 
-        return f"   {total_words} {path.basename(file_name)}"
+        return total_words
     except FileNotFoundError:
         return f"File: {path.basename(file_name)} not found."
     except OSError:
@@ -134,7 +141,7 @@ def count_characters(file_name):
             for line in file:
                 total_characters += len(line.encode("utf-8"))
 
-        return f"   {total_characters} {path.basename(file_name)}"
+        return total_characters
     except FileNotFoundError:
         return f"File: {path.basename(file_name)} not found."
     except OSError:

@@ -6,10 +6,11 @@
 """
 
 import argparse
+import sys
 
 
 def args_setup():
-    """Function sets up the arguments this app will take using argparse, adds argument help for users, flags available: -c, -l, -w, -m
+    """Function sets up the arguments this app will take using argparse, adds argument help for users, flags available: -c, -l, -w, -m, also takes 1 positional argument if no flags given.
 
     Parameters:
         None.
@@ -22,39 +23,51 @@ def args_setup():
     """
 
     parser = argparse.ArgumentParser(
-        description="ccwc - word, line, character, and byte count"
+        description="ccwc (coding challenge word count) - word, line, character, and byte count"
     )
 
     # Flag argument for -c
     parser.add_argument(
         "-c",
-        type=str,
+        nargs="?",
+        type=argparse.FileType("r"),
+        const=sys.stdin,
         help="The number of bytes in each input file is written to the standard output.",
     )
 
     # Flag argument for -l
     parser.add_argument(
         "-l",
-        type=str,
+        nargs="?",
+        type=argparse.FileType("r"),
+        const=sys.stdin,
         help="The number of lines in each input file is written to the standard output.",
     )
 
     # Flag argument for -w
     parser.add_argument(
         "-w",
-        type=str,
+        nargs="?",
+        type=argparse.FileType("r"),
+        const=sys.stdin,
         help="The number of words in each input file is written to the standard output.",
     )
 
     # Flag argument for -m
     parser.add_argument(
         "-m",
-        type=str,
-        help="The number of characters in each input file is written to the standard output.  If the current locale does not support multibyte characters, this is equivalent to the -c option.  This will cancel out any prior usage of the -c option.",
+        nargs="?",
+        type=argparse.FileType("r"),
+        const=sys.stdin,
+        help="The number of characters in each input file is written to the standard output.",
     )
 
     # Positional, default argument if no flag given
-    parser.add_argument("input_file", nargs="?", help="Input file")
+    parser.add_argument(
+        "input_file",
+        nargs="?",
+        help="A positional argument which can take a file name or standard input when no flag is given.",
+    )
 
     args = parser.parse_args()
 

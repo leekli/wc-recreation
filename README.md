@@ -45,7 +45,6 @@ Part of this Coding challenge: https://codingchallenges.fyi/challenges/challenge
 
   ```terminal
   $ cat art_of_war.txt | ./ccwc.py -c
-
   ```
 
 <br></br>
@@ -62,7 +61,6 @@ Part of this Coding challenge: https://codingchallenges.fyi/challenges/challenge
 
   ```terminal
   $ cat art_of_war.txt | ./ccwc.py -l
-
   ```
 
   <br></br>
@@ -79,7 +77,6 @@ Part of this Coding challenge: https://codingchallenges.fyi/challenges/challenge
 
   ```terminal
   $ cat art_of_war.txt | ./ccwc.py -w
-
   ```
 
   <br></br>
@@ -96,7 +93,6 @@ Part of this Coding challenge: https://codingchallenges.fyi/challenges/challenge
 
   ```terminal
   $ cat art_of_war.txt | ./ccwc.py -m
-
   ```
 
 <br></br>
